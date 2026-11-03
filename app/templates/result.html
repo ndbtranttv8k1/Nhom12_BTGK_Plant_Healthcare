@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kết quả nhận diện bệnh trên lá cây</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='common.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+</head>
+<body>
+  <div class="stage" id="stage">
+
+    <h1 class="title">Nhận diện loại bệnh trên lá cây</h1>
+
+    <p class="photo-label">Ảnh đã tải lên</p>
+
+
+    <div class="photo{% if image_url %} has-image{% endif %}" id="photo">
+      <img id="photo-img" alt="Ảnh đã tải lên" {% if image_url %}src="{{ image_url }}"{% endif %}>
+    </div>
+
+    <h2 class="subtitle">Nhận diện loại bệnh trên lá cây</h2>
+<div class="info">
+<p class="info-label">Top 3 kết quả dự đoán:</p>
+{% for p in top3 %}
+{% set name = p.name | replace('___', ' – ') | replace('_', ' ') | trim %}
+<p class="info-name">{{ loop.index }}. {{ name }} — {{ '%.1f' | format(p.confidence) }}%</p>
+{% endfor %}
+</div>
+
+    <a class="btn btn-light btn-back" href="/"><span>← Thử ảnh khác</span></a>
+
+    <div class="cater" id="cater">
+      <img src="{{ url_for('static', filename='images/cater.png') }}" alt="">
+    </div>
+
+  </div>
+
+  <script src="{{ url_for('static', filename='common.js') }}"></script>
+  <script src="{{ url_for('static', filename='result.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nhận diện loại bệnh trên lá cây</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='common.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+  <div class="stage" id="stage">
+
+    <h1 class="title">Nhận diện loại bệnh trên lá cây</h1>
+
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+
+      <div class="btn btn-light btn-choose">
+        <span>Chọn tệp</span>
+        <input type="file" name="file" id="file" accept="image/*" required>
+      </div>
+
+      <p class="file-name" id="file-name">Chưa có tệp nào được chọn</p>
+
+      <button type="submit" class="btn btn-dark btn-analyze">
+        <span>Phân tích</span>
+      </button>
+    </form>
+
+    <div class="cater" id="cater">
+      <img src="{{ url_for('static', filename='images/cater.png') }}" alt="">
+    </div>
+
+  </div>
+
+  <script src="{{ url_for('static', filename='common.js') }}"></script>
+  <script src="{{ url_for('static', filename='index.js') }}"></script>
+</body>
+</html>
